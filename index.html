@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>輪播圖片</title>
+  <style>
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.carousel {
+  position: relative;
+   width: 100%;
+  overflow: hidden; /* 隱藏未顯示的圖片，防止影響寬度 */
+  max-width: 600px;
+
+  overflow: hidden;
+}
+
+.carousel-images {
+  display: flex;
+  width: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-images img {
+   width: 100%;
+  flex-shrink: 0; /* 確保圖片不會縮小 */
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+button {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.carousel {
+    transform: scale(.85); /* 縮小 70% */
+    transform-origin: left; /* 讓縮放從中間開始 */
+}
+</style>
+  
+</head>
+<body>
+  <div class="carousel">
+    <div class="carousel-images">
+      <img src="https://images.plurk.com/4iNHbRa0RypITlDRJtzU0r.png" alt="Image 1">
+      <img src="https://images.plurk.com/65kqwuXzp0KWOP56NaAFtM.png" alt="Image 2">
+      <img src="https://images.plurk.com/17i4P5zmGgWoCdLCgHX0Ti.png" alt="Image 3">
+        <img src="https://images.plurk.com/102FbZ4lnJlS8Xbi6gtT7Z.png" alt="Image 4">
+    </div>
+    <div class="carousel-nav">
+      <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+      <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+  </div>
+
+  <script>let currentIndex = 0;
+
+function moveSlide(step) {
+  const slides = document.querySelectorAll('.carousel-images img');
+  currentIndex = (currentIndex + step + slides.length) % slides.length;
+  document.querySelector('.carousel-images').style.transform = `translateX(-${currentIndex * 100}%)`;
+}
+</script>
+  
+</body>
+</html>
